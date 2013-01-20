@@ -1,0 +1,35 @@
+.big {
+   font-size:200%;
+   text-decoration:underline;
+   position:relative;
+   left:101px;;
+}
+.underlined {
+   text-decoration:underline;
+}
+#info {
+   font-family:Futura;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   text-align:left;
+   border:2px solid;
+   font-size:125%;
+   width:300px;
+   padding:10px;
+   margin:10px;
+   height: 500px;
+}
+#ann {
+   font-family:Futura;
+   color:#ffffff;
+   text-align:center;
+   background-image:url('images/box.jpg');
+   border:4px solid;
+   border-radius:25px;
+}
+body {
+   background-image:url('images/background.jpg');
+   background-attachment:fixed; 
+   background-repeat:no-repeat;
+   background-size:cover;
+}
