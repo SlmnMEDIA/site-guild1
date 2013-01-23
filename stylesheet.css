@@ -7,6 +7,35 @@
 .underlined {
    text-decoration:underline;
 }
+#createaccount {
+   font-family:Futura;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   text-align:left;
+   border:2px solid;
+   font-size:125%;
+   width:150px;
+   padding:10px;
+   margin:10px;
+   height: 30px;
+   position: relative;
+   top: 10px;
+   text-decoration:none;
+}
+#new {
+   font-family:Futura;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   border:2px solid;
+   font-size:125%;
+   text-align:center;
+   width:600px;
+   padding:10px;
+   height: 300px;
+   margin: 0 auto;
+   top: 200px;
+}
+
 #info {
    font-family:Futura;
    color:#ffffff;

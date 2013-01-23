@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Reak n' Crew</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="stylesheet.css">
+<script>
+  var params = {};
+  function init() {
+    var query = window.location.search.substring(1);
+    query.split('&').forEach(function(pair) {
+      var parts = pair.split('=');
+      var name = decodeURIComponent(parts[0]);
+      var value = decodeURIComponent(parts[1] || '');
+      params[name] = value;
+    });
+    if (params['code'] == '1') {
+      var msgdiv = document.getElementById('msg');
+      msgdiv.innerHTML = "You fool! Confirm Password must be the same as password!"
+    }
+  }
+</script>
+</head>
+<body onload="init()">
+ <div id="new">
+  <div id="msg">
+  </div>
+  <br>
+  <br>
+  <form action="adduser" method="POST">
+    Username: <input type="text" name="username"> <br>(Preferrably your WoW name)<br>
+    Password: <input type="password" name="password"><br>
+    Confirm Password: <input type="password" name="confirmPassword"><br>
+    Codeword: <input type="text" name="confirmation"> <br>(To make sure your not some random guy that stumbled upon the page)<br>
+    <input type="submit" value="Create Account"><br>
+ </div>
+</body>
+</html>
