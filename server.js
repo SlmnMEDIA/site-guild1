@@ -71,6 +71,10 @@ http.createServer(function(request, response) {
               sys.puts("err: " + err);
               sys.puts("result: " + result);
             });
+            response.writeHead(302, {
+              'Location': 'adduser.html?code=2'
+            });
+            response.end();
           });
         }
       });
