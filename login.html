@@ -1,7 +1,43 @@
 <!doctype html>
+<html lang="en">
 <head>
+<title>Reak n' Crew</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="stylesheet.css">
+<script>
+  var params = {};
+  function init() {
+    var query = window.location.search.substring(1);
+    query.split('&').forEach(function(pair) {
+      var parts = pair.split('=');
+      var name = decodeURIComponent(parts[0]);
+      var value = decodeURIComponent(parts[1] || '');
+      params[name] = value;
+    });
+    if (params['code'] == '1') {
+      var msgdiv = document.getElementById('msg');
+      msgdiv.innerHTML = "Are you sure thats the right password?"
+    } else if (params['code'] == '2') {
+      var msgdiv = document.getElementById('msg');
+      msgdiv.innerHTML = "Logged in lolz!"
+    }
+  }
+</script>
 </head>
-<body>
+<body onload="init()">
+ <a id="return" href="/index.html">
+   Return to home page
+ </a>
+ <div id="new">
+  <div id="msg">
+  </div>
+  <br>
+  <br>
+  <form action="login" method="POST">
+    Username: <input type="text" name="username"> <br>
+    Password: <input type="password" name="password"><br>
+    <input type="submit" value="login"><br>
+  </form>
+ </div>
 </body>
-
-
+</html>

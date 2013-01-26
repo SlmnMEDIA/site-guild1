@@ -5,19 +5,40 @@
    <meta charset="utf-8">
    <link rel="stylesheet" href="stylesheet.css">
    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
-   <script src="js.js"></script>
+   <script>
+     var cookies = {};
+     var username;
+     function init() {
+       console.log("cookie: " + document.cookie);
+       if (document.cookie) {
+         document.cookie.split(';').forEach(function(cookie) {
+           var parts = cookie.split('=');
+           var name = parts[0].trim();
+           var value = (parts[1] || '').trim();
+           cookies[name] = value;
+         });
+       }
+       if (cookies['username']) {
+         username = cookies['username'];
+         var greeting = document.getElementById('greeting');
+         greeting.innerHTML = "You are logged in as " + username;
+       }
+     }
+   </script>
 </head>
-<body>
+<body onload="init()">
    <h1 id="ann">NEW RECORD! We downed Magmaw, ODS and Chim subsequently without wiping!</h1> 
    <p id="info">
       <span class="big">Info!</span><br>
-      <span class="underlined">Guild name:</span> Reak n' crew.<br>
-      <span class="underlined">Realm:</span> Emberflame.<br>
-      <span class="underlined">Members:</span> ?.<br>
-      <span class="underlined">Guild-Master:</span> Reaknstein (aka Elreak).<br>
-      <span class="underlined">Current Goal:</span> Downing Maloriak 10n (BWD).<br>
-      <span class="underlined">Current Level:</span> 5.<br>
+      <span class="underlined">Guild name:</span> Reak n' crew<br>
+      <span class="underlined">Realm:</span> Emberflame<br>
+      <span class="underlined">Members:</span> 55<br>
+      <span class="underlined">Guild-Master:</span> Elreak<br>
+      <span class="underlined">Current Goal:</span> Maloriak 10n (BWD)<br>
+      <span class="underlined">Current Level:</span> 5<br>
    </p>
+   <a id="login" href="/login.html">Login</a>
    <a id="createaccount" href="/adduser.html">Create Account</a>
+   <p id="greeting">You are not logged in.</p>
 </body>
 </html>

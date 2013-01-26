@@ -18,6 +18,41 @@ function getCookies(request) {
   return cookies; 
 }
 
+function cookieString(cookie) {
+  var string = cookie.name + '=' + cookie.value;
+  if (cookie['domain']) string += ';Domain=' + cookie['domain'];
+  if (cookie['path']) string += ';Path=' + cookie['path'];
+  if (cookie['comment']) string += ';Comment=' + cookie['comment'];
+  if (cookie['maxage']) string += ';Max-Age=' + cookie['maxage'];
+  if (cookie['version']) string += ';Version=' + cookie['version'];
+  if (cookie['secure']) string += ';Secure';
+  return string;
+}
+
+function setCookie(response, cookie) {
+  response.setHeader("Set-Cookie", cookieString(cookie));
+}
+
+function setCookies(response, cookies) {
+  response.setHeader("Set-Cookie", cookies.map(cookieString));
+}
+
+var MIMETYPES = {
+  "html": "text/html",
+  "css": "text/css",
+  "js": "text/javascript"
+}
+
+function mimeType(path) {
+  var n = path.lastIndexOf('.');
+  var ext = (n > -1) ? path.substring(n + 1) : '';
+  if (MIMETYPES[ext]) {
+    return MIMETYPES[ext];
+  } else {
+    return "text/plain";
+  }
+}
+
 http.createServer(function(request, response) {
   var cookies = getCookies(request);
   var pathname = url.parse(request.url).pathname;
@@ -76,6 +111,32 @@ http.createServer(function(request, response) {
             });
             response.end();
           });
+        } else if (pathname == "/login") {
+          var username = post_params["username"];
+          var password = post_params["password"];
+          MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
+            if (err) { return console.dir(err); }
+            var users = db.collection('users');
+            users.findOne({"username": username}, function(err, user) {
+              if (err) {
+                response.writeHead(302, {
+                  'Location': 'login.html?code=2'
+                });
+                response.end();
+              } else if (password != user.password) {
+                response.writeHead(302, {
+                  'Location': 'login.html?code=1'
+                });
+                response.end();
+              } else {
+                setCookie(response, {"name": "username", "value": username});
+                response.writeHead(302, {
+                  'Location': 'index.html'
+                });
+                response.end();
+              }
+            });
+          }); 
         }
       });
     }
@@ -93,7 +154,7 @@ http.createServer(function(request, response) {
             response.write(err + "\n");
             response.end();
           } else {
-            response.writeHeader(200);
+            response.writeHeader(200, {"Content-Type": mimeType(full_path)});
             response.write(file, "binary");
             response.end();
           }
