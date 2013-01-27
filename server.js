@@ -57,6 +57,7 @@ http.createServer(function(request, response) {
   var cookies = getCookies(request);
   var pathname = url.parse(request.url).pathname;
   if (pathname == "/") pathname = "/index.html";
+  sys.puts("pathname: " + pathname);
   if (request.method === "POST") {
     var post_params = {};
     if (request.headers['content-type'] == "application/x-www-form-urlencoded") {
@@ -137,10 +138,48 @@ http.createServer(function(request, response) {
               }
             });
           }); 
+        } else if (pathname="/shout" && post_params['username'] != "undefined") {
+          sys.puts("/shout");
+          var username = post_params['username'];
+          var msg = post_params['msg'];
+          sys.puts("username: " + username);
+          sys.puts("msg: " + msg);
+          MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
+            if (err) { return console.dir(err); }
+            var shouts = db.collection('shouts');
+            var shout = {
+              'username' : username,
+              'shout' : msg
+            };
+            shouts.insert(shout, {w: 1}, function(err, result) {
+              sys.puts("err: " + err);
+              sys.puts("result: " + result);
+              shouts.find().toArray(function(err, items) {
+                response.writeHead(200, {
+                  'Content-Type': 'text/json'
+                });
+                response.write(JSON.stringify(items));
+                response.end();
+              });
+            });
+          });
+        } else if (pathname == "/shouts") {
+          MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
+           if (err) { return console.dir(err); }
+
+           var shouts = db.collection('shouts');
+           shouts.find().toArray(function(err, items) {
+             response.writeHead(200, {
+                  'Content-Type': 'text/json'
+             });
+             response.write(JSON.stringify(items));
+             response.end();
+           });
+         });
         }
       });
     }
-  } else {
+  } else { // GET
     var full_path = path.join(process.cwd(), pathname);
     fs.exists(full_path,function(exists) {
       if (!exists) {

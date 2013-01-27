@@ -7,6 +7,40 @@
 .underlined {
    text-decoration:underline;
 }
+#shouts {
+   font-family:Futura;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   text-align:left;
+   overflow:scroll;
+   overflow-y:scroll;
+   overflow-x:hidden;
+   border:2px solid;
+   font-size:125%;
+   height: 70%;
+   width: 200px;
+   margin:10px;
+   position: absolute;
+   top: 195px;
+   right: 0px;
+   text-decoration:none;
+}
+#shout_form {
+   font-family:Futura;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   text-align:center;
+   border:2px solid;
+   font-size:125%;
+   height: 100px;
+   width: 200px;
+   margin:10px;
+   position: absolute;
+   top: 75px;
+   right: 0px;
+   text-decoration:none;
+   border-radius:10px;
+}
 #greeting {
    font-family:Futura;
    color:#ffffff;

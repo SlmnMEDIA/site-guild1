@@ -22,7 +22,49 @@
          username = cookies['username'];
          var greeting = document.getElementById('greeting');
          greeting.innerHTML = "You are logged in as " + username;
+         var loggedIn = true;
        }
+       var ajax = new XMLHttpRequest();
+       ajax.open("POST", "/shout", true);
+       ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+       ajax.onreadystatechange = function() {
+         console.log("sendShout callback");
+         if (ajax.readyState == 4 && ajax.status == 200) {
+           console.log("responseText: " + ajax.responseText);
+           var msgs = JSON.parse(ajax.responseText).reverse();
+           console.log(msgs[0]);
+           var shouts = document.getElementById("shouts");
+           var texts = msgs.map(function(msg) {
+             return "| " + msg.username + ": " + msg.shout;
+           });
+           console.log(texts);
+           shouts.innerHTML = texts.join('<br/>');
+         }
+       }
+       ajax.send();
+     }
+
+     function sendShout() {
+       var msg = document.shout_form.msg.value;
+       var data = "username=" + username + "&msg=" + encodeURIComponent(msg);
+       var ajax = new XMLHttpRequest();
+       ajax.open("POST", "/shout", true);
+       ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+       ajax.onreadystatechange = function() {
+         console.log("sendShout callback");
+         if (ajax.readyState == 4 && ajax.status == 200) {
+           console.log("responseText: " + ajax.responseText);
+           var msgs = JSON.parse(ajax.responseText).reverse();
+           console.log(msgs[0]);
+           var shouts = document.getElementById("shouts");
+           var texts = msgs.map(function(msg) {
+             return msg.username + ": " + msg.shout;
+           });
+           console.log(texts);
+           shouts.innerHTML = texts.join('<br/>');
+         }
+       }
+       ajax.send(data);
      }
    </script>
 </head>
@@ -37,6 +79,13 @@
       <span class="underlined">Current Goal:</span> Maloriak 10n (BWD)<br>
       <span class="underlined">Current Level:</span> 5<br>
    </p>
+   <div id="shout_input">
+     <form id="shout_form" name="shout_form">
+       <textarea id="msg" name="msg" COLS=20 rows=3.5></textarea> 
+       <button type="button" onclick="sendShout()">Shout</button>
+     </form>
+   </div>
+   <div id="shouts"></div>
    <a id="login" href="/login.html">Login</a>
    <a id="createaccount" href="/adduser.html">Create Account</a>
    <p id="greeting">You are not logged in.</p>
