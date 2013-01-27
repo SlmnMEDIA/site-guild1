@@ -138,10 +138,10 @@ http.createServer(function(request, response) {
               }
             });
           }); 
-        } else if (pathname="/shout" && post_params['username'] != "undefined") {
+        } else if (pathname == "/shout" && post_params['username'] != "undefined") {
           sys.puts("/shout");
           var username = post_params['username'];
-          var msg = post_params['msg'];
+          var msg = decodeURIComponent(post_params['msg']);
           sys.puts("username: " + username);
           sys.puts("msg: " + msg);
           MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
