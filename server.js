@@ -59,22 +59,26 @@ http.createServer(function(request, response) {
   if (pathname == "/") pathname = "/index.html";
   sys.puts("pathname: " + pathname);
   if (request.method === "POST") {
+    sys.puts("POST");
+    sys.puts("content-type: " + request.headers['content-type']);
     var post_params = {};
-    if (request.headers['content-type'] == "application/x-www-form-urlencoded") {
+    var contentType = request.headers['content-type'].split(';')[0];
+    if (contentType == "application/x-www-form-urlencoded") {
       var body = "";
       request.on('data', function(chunk) {
         body += chunk;
       }); 
       var post_params = {};
       request.on('end', function() {
-        sys.puts(body + ': ' + body);
         var pairs = body.split('&');
         for (i in pairs) {
           var pair = pairs[i].split('=');
-          var param_name = pair[0];
-          var param_value = pair[1];
-          sys.puts(param_name + ': ' + param_value);
-          post_params[param_name] = param_value;
+          var param_name = pair[0].trim();
+          var param_value = decodeURIComponent((pair[1] || '').trim());
+          if (param_name != '') {
+            post_params[param_name] = param_value;
+            sys.puts(param_name + ": " + param_value);
+          }
         }
 
         if (pathname == "/adduser") {
@@ -119,20 +123,15 @@ http.createServer(function(request, response) {
             if (err) { return console.dir(err); }
             var users = db.collection('users');
             users.findOne({"username": username}, function(err, user) {
-              if (err) {
-                response.writeHead(302, {
-                  'Location': 'login.html?code=2'
-                });
-                response.end();
-              } else if (password != user.password) {
-                response.writeHead(302, {
-                  'Location': 'login.html?code=1'
-                });
-                response.end();
-              } else {
+              if (user && user.password == password) {
                 setCookie(response, {"name": "username", "value": username});
                 response.writeHead(302, {
                   'Location': 'index.html'
+                });
+                response.end();
+              } else {
+                response.writeHead(302, {
+                  'Location': 'login.html?code=2'
                 });
                 response.end();
               }
@@ -141,7 +140,7 @@ http.createServer(function(request, response) {
         } else if (pathname == "/shout" && post_params['username'] != "undefined") {
           sys.puts("/shout");
           var username = post_params['username'];
-          var msg = decodeURIComponent(post_params['msg']);
+          var msg = post_params['msg'];
           sys.puts("username: " + username);
           sys.puts("msg: " + msg);
           MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
@@ -180,6 +179,7 @@ http.createServer(function(request, response) {
       });
     }
   } else { // GET
+    sys.puts("GET");
     var full_path = path.join(process.cwd(), pathname);
     fs.exists(full_path,function(exists) {
       if (!exists) {
