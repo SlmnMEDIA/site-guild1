@@ -25,10 +25,9 @@
          var loggedIn = true;
        }
        var ajax = new XMLHttpRequest();
-       ajax.open("POST", "/shout", true);
+       ajax.open("POST", "/shouts", true);
        ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
        ajax.onreadystatechange = function() {
-         console.log("sendShout callback");
          if (ajax.readyState == 4 && ajax.status == 200) {
            console.log("responseText: " + ajax.responseText);
            var msgs = JSON.parse(ajax.responseText).reverse();
@@ -41,7 +40,7 @@
            shouts.innerHTML = texts.join('<br/>');
          }
        }
-       ajax.send();
+       ajax.send(null);
      }
 
      function sendShout() {
