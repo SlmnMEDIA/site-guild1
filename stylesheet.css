@@ -104,23 +104,39 @@
    margin:10px;
    height: 40px;
    position: absolute;
-   top: 0px;
-   left: 0px;
+   bottom: 0px;
+   right: 0px;
+   text-decoration:none;
+}
+#forumlink {
+   font-family:Futura;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   text-align:center;
+   border:2px solid;
+   font-size:125%;
+   width:100px;
+   padding:10px;
+   margin:10px;
+   height: 30px;
+   position: absolute;
+   left: 310px;
+   bottom: 0px;
    text-decoration:none;
 }
 #login {
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
-   text-align:left;
+   text-align:center;
    border:2px solid;
    font-size:125%;
-   width:150px;
+   width:100px;
    padding:10px;
    margin:10px;
    height: 30px;
-   position: relative;
-   left: 0px;
+   position: absolute;
+   left: 180px;
    bottom: 0px;
    text-decoration:none;
 }
@@ -135,8 +151,8 @@
    padding:10px;
    margin:10px;
    height: 30px;
-   position: relative;
-   left: 0px;
+   position: absolute;
+   left: 440px;
    bottom: 0px;
    text-decoration:none;
 }
