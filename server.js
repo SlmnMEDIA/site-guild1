@@ -175,23 +175,23 @@ http.createServer(function(request, response) {
              response.end();
            });
          });
-} else if (pathname="/chat" && post_params['username'] != "undefined") {
-          sys.puts("/chat");
+} else if (pathname == "/forum" && post_params['username'] != "undefined") {
+          sys.puts("/forum");
           var username = post_params['username'];
           var msg = post_params['msg'];
           sys.puts("username: " + username);
           sys.puts("msg: " + msg);
           MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
             if (err) { return console.dir(err); }
-            var chats = db.collection('chat');
-            var chat = {
+            var forums = db.collection('forum');
+            var forum = {
               'username' : username,
-              'chat' : msg
+              'forum' : msg
             };
-            chats.insert(chat, {w: 1}, function(err, result) {
+            forums.insert(forum, {w: 1}, function(err, result) {
               sys.puts("err: " + err);
               sys.puts("result: " + result);
-              chats.find().toArray(function(err, items) {
+              forums.find().toArray(function(err, items) {
                 response.writeHead(200, {
                   'Content-Type': 'text/json'
                 });
@@ -200,12 +200,12 @@ http.createServer(function(request, response) {
               });
             });
           });
-        } else if (pathname == "/chats") {
+        } else if (pathname == "/forums") {
           MongoClient.connect("mongodb://localhost:27017/reakncrew", function(err, db) {
            if (err) { return console.dir(err); }
 
-           var chats = db.collection('chat');
-           chats.find().toArray(function(err, items) {
+           var forums = db.collection('forum');
+           forums.find().toArray(function(err, items) {
              response.writeHead(200, {
                   'Content-Type': 'text/json'
              });

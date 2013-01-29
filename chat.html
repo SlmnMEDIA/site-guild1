@@ -5,42 +5,60 @@
 <link rel="stylesheet" href="stylesheet.css">
 <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
 <script>
-  function init() {
+     var cookies = {};
+     var username;
+     function init() {
+       console.log("cookie: " + document.cookie);
+       if (document.cookie) {
+         document.cookie.split(';').forEach(function(cookie) {
+           var parts = cookie.split('=');
+           var name = parts[0].trim();
+           var value = (parts[1] || '').trim();
+           cookies[name] = value;
+         });
+       }
+       if (cookies['username']) {
+         username = cookies['username'];
+         var greeting = document.getElementById('greeting');
+         greeting.innerHTML = "You are logged in as " + username;
+         var loggedIn = true;
+       }
     var ajax = new XMLHttpRequest();
-    ajax.open("POST", "/chats", true);
+    ajax.open("POST", "/forums", true);
     ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
     ajax.onreadystatechange = function() {
     if (ajax.readyState == 4 && ajax.status == 200) {
       console.log("responseText: " + ajax.responseText);
       var msgs = JSON.parse(ajax.responseText).reverse();
       console.log(msgs[0]);
-      var chats = document.getElementById("chat");
+      var forums = document.getElementById("forum");
       var texts = msgs.map(function(msg) {
-        return "| " + msg.username + ": " + msg.shout;
+        return "| " + msg.username + ": " + msg.forum;
       });
       console.log(texts);
-      chat.innerHTML = texts.join('<br/>');
+      forum.innerHTML = texts.join('<br/>');
     }
     }
-    ajax.send();
+    ajax.send(null);
   }
-  function sendShout() {
-    var msg = document.chat.msg.value;
+  function sendSay() {
+    var msg = document.say.msg.value;
     var data = "username=" + username + "&msg=" + encodeURIComponent(msg);
     var ajax = new XMLHttpRequest();
-    ajax.open("POST", "/chat", true);
+    ajax.open("POST", "/forum", true);
     ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
     ajax.onreadystatechange = function() {
+      console.log("sendSay callback");
       if (ajax.readyState == 4 && ajax.status == 200) {
         console.log("responseText: " + ajax.responseText);
         var msgs = JSON.parse(ajax.responseText).reverse();
         console.log(msgs[0]);
-        var chat = document.getElementById("chat");
+        var forum = document.getElementById("forum");
         var texts = msgs.map(function(msg) {
-          return msg.username + ": " + msg.shout;
+          return "| " + msg.username + ": " + msg.forum;
         });
         console.log(texts);
-        chat.innerHTML = texts.join('<br/>');
+        forum.innerHTML = texts.join('<br/>');
         }
       }
     ajax.send(data);
@@ -48,12 +66,13 @@
 </script>
 </head>
 <body onload = "init();">
-  <div id="chat"></div>
+  <div id="forum"></div>
   <div id="input">
      <form id="say" name="say">
-       <textarea id="msg" name="msg" COLS=20 rows=3.5 onkeydown="if (event.keyCode == 13) document.getElementById('say').click()"></textarea>
-       <button type="button" id="say" onclick="sendSay()">Say</button>
+       <input type="text" id="msg" onkeydown="if (event.keyCode == 13) document.getElementById('say').click()">
+       <button type="button" onclick="sendSay();">Say</button>
      </form>
   </div>
+<p id="greeting">You are not logged in.</p>
 </body>
 </html>
