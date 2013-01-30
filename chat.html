@@ -42,6 +42,7 @@
     ajax.send(null);
   }
   function sendSay() {
+    if (username !== null) {
     var msg = document.say.msg.value;
     var data = "username=" + username + "&msg=" + encodeURIComponent(msg);
     var ajax = new XMLHttpRequest();
@@ -62,7 +63,9 @@
         }
       }
     ajax.send(data);
+    }
   }
+  
 </script>
 </head>
 <body onload = "init();">
