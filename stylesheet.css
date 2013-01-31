@@ -7,8 +7,14 @@
 .underlined {
    text-decoration:underline;
 }
+#credit {
+   font-size: 50%;
+   position: absolute;
+   top: 0px;
+   color: white;
+}
 #input {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-repeat: no-repeat;
    background-size: cover;
@@ -24,7 +30,7 @@
    text-decoration:none;
 }
 #forum {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:black;
    background:white;
    text-align:left;
@@ -45,7 +51,7 @@
 }
    
 #shouts {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -65,7 +71,7 @@
    text-decoration:none;
 }
 #shout_form {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -83,7 +89,7 @@
    border-radius:10px;
 }
 #greeting {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -101,7 +107,7 @@
    text-decoration:none;
 }
 #return {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -119,7 +125,7 @@
    text-decoration:none;
 }
 #forumlink {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -137,7 +143,7 @@
    text-decoration:none;
 }
 #login {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -155,14 +161,14 @@
    text-decoration:none;
 }
 #createaccount {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
    background-size: cover;
    text-align:left;
    border:2px solid;
-   font-size:125%;
+   font-size:115%;
    width:150px;
    padding:10px;
    margin:10px;
@@ -173,7 +179,7 @@
    text-decoration:none;
 }
 #new {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -189,7 +195,7 @@
 }
 
 #info {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    background-image:url('images/box.jpg');
    background-repeat: no-repeat;
@@ -203,7 +209,7 @@
    height: 250px;
 }
 #ann {
-   font-family:Futura;
+   font-family:Century Gothic, sans-serif;;
    color:#ffffff;
    text-align:center;
    background-image:url('images/box.jpg');
