@@ -10,6 +10,8 @@
 #input {
    font-family:Futura;
    color:#ffffff;
+   background-repeat: no-repeat;
+   background-size: cover;
    background-image:url('images/box.jpg');
    text-align:left;
    border:2px solid;
@@ -46,13 +48,15 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:left;
    overflow:scroll;
    overflow-y:scroll;
    overflow-x:hidden;
    border:2px solid;
    font-size:125%;
-   height: 70%;
+   height: 69%;
    width: 200px;
    margin:10px;
    position: absolute;
@@ -64,6 +68,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:center;
    border:2px solid;
    font-size:125%;
@@ -80,13 +86,15 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:center;
    border:2px solid;
-   font-size:125%;
+   font-size:100%;
    width:150px;
    padding:10px;
    margin:10px;
-   height: 40px;
+   height: 30px;
    position: absolute;
    bottom: 0px;
    left: 0px;
@@ -96,6 +104,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:center;
    border:2px solid;
    font-size:125%;
@@ -112,6 +122,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:center;
    border:2px solid;
    font-size:125%;
@@ -128,6 +140,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:center;
    border:2px solid;
    font-size:125%;
@@ -144,6 +158,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:left;
    border:2px solid;
    font-size:125%;
@@ -160,6 +176,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    border:2px solid;
    font-size:125%;
    text-align:center;
@@ -174,6 +192,8 @@
    font-family:Futura;
    color:#ffffff;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    text-align:left;
    border:2px solid;
    font-size:125%;
@@ -187,12 +207,14 @@
    color:#ffffff;
    text-align:center;
    background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    border:4px solid;
    border-radius:25px;
 }
 body {
    background-image:url('images/background.jpg');
-   background-attachment:fixed; 
+   background-attachment:fixed;
    background-repeat:no-repeat;
    background-size:cover;
 }
