@@ -7,6 +7,13 @@
 .underlined {
    text-decoration:underline;
 }
+#chat {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   margin-top: -200px;
+   margin-left: -323.5px;
+}
 #credit {
    font-size: 50%;
    position: absolute;
