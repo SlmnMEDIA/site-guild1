@@ -131,6 +131,24 @@
    right: 0px;
    text-decoration:none;
 }
+#chatlink {
+   font-family:Century Gothic, sans-serif;;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align:center;
+   border:2px solid;
+   font-size:125%;
+   width:100px;
+   padding:10px;
+   margin:10px;
+   height: 30px;
+   position: absolute;
+   left: 620px;
+   bottom: 0px;
+   text-decoration:none;
+}
 #forumlink {
    font-family:Century Gothic, sans-serif;;
    color:#ffffff;

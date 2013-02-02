@@ -29,7 +29,7 @@
     ajax.onreadystatechange = function() {
     if (ajax.readyState == 4 && ajax.status == 200) {
       console.log("responseText: " + ajax.responseText);
-      var msgs = JSON.parse(ajax.responseText).reverse();
+      var msgs = JSON.parse(ajax.responseText);
       console.log(msgs[0]);
       var forums = document.getElementById("forum");
       var texts = msgs.map(function(msg) {
@@ -52,7 +52,7 @@
       console.log("sendSay callback");
       if (ajax.readyState == 4 && ajax.status == 200) {
         console.log("responseText: " + ajax.responseText);
-        var msgs = JSON.parse(ajax.responseText).reverse();
+        var msgs = JSON.parse(ajax.responseText);
         console.log(msgs[0]);
         var forum = document.getElementById("forum");
         var texts = msgs.map(function(msg) {
