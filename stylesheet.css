@@ -2,10 +2,24 @@
    font-size:200%;
    text-decoration:underline;
    position:relative;
-   left:101px;;
+   text-align: center;
 }
 .underlined {
    text-decoration:underline;
+}
+#blacklist {
+   font-family:Century Gothic, sans-serif;;
+   color:#ffffff;
+   background-image:url('images/box.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align:left;
+   border:2px solid;
+   font-size:125%;
+   width:300px;
+   padding:10px;
+   margin:10px;
+   height: 350px;
 }
 #chat {
    position: fixed;
